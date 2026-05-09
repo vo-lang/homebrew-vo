@@ -22,7 +22,9 @@ class Vo < Formula
   end
 
   test do
-    assert_match "vo version #{version}", shell_output("#{bin}/vo version")
+    version_output = shell_output("#{bin}/vo version")
+    assert_match "vo version", version_output
+    assert_match "v#{version}", version_output
     (testpath/"hello.vo").write <<~VO
       package main
 
